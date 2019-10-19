@@ -3,4 +3,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="note_added_successfully">memory added successfully</string>
     <string name="ok">Ok</string>
+    <string name="google_maps_key">AIzaSyAXELh6zrNvWKZDq-4j0-IX-bU_pd2fRSA</string>
+    <string name="Longitude">Longitude</string>
+    <string name="Latitude">Latitude</string>
+
 </resources>

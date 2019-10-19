@@ -6,7 +6,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import com.example.map.database.DataConverter;
 
@@ -18,9 +17,8 @@ public class Memory {
     @ColumnInfo
     String title;
     String  content;
-    @TypeConverters(DataConverter.class)
-    @ColumnInfo
-    Location location;
+    double  longitude;
+    double latitude;
 
 
 
@@ -29,10 +27,12 @@ public class Memory {
     {
     }
     @Ignore
-    public Memory(String title, String content, Location location) {
+    public Memory(String title, String content, double longitude, double latitude) {
         this.title = title;
         this.content = content;
-        this.location = location; }
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     public int getId() {
         return id;
@@ -58,10 +58,15 @@ public class Memory {
         this.content = content;
     }
 
-    public Location getLocation() {
-        return location;
+    public double getLongitude() {return longitude; }
+
+    public void setLongitude(double longitude) { this.longitude = longitude; }
+
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(Location location) { this.location = location; }
-
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 }

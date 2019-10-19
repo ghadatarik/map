@@ -20,43 +20,26 @@ public class AddMemory extends BaseActivity implements View.OnClickListener {
     protected EditText title;
     protected EditText content;
     protected Button add ,image;
+    double latitude,longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_memory);
+        initView();
+        latitude=getIntent().getDoubleExtra(getString(R.string.Latitude),0);
+        longitude=getIntent().getDoubleExtra(getString(R.string.Longitude),0);
+
     }
-    Location myLoaction =null;
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.add) {
-            MyLocationProvider locationProvider =new MyLocationProvider(this);
-                myLoaction = locationProvider.getCurrentLocaion(new LocationListener() {
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        myLoaction=location;
-                    }
 
-                    @Override
-                    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                    }
-
-                    @Override
-                    public void onProviderEnabled(String provider) {
-
-                    }
-
-                    @Override
-                    public void onProviderDisabled(String provider) {
-
-                    }
-                });
 
             String titleS = title.getText().toString();
             String contentS = content.getText().toString();
-            Memory memory =new Memory(titleS,contentS,myLoaction);
+            Memory memory =new Memory(titleS,contentS,longitude,latitude);
             MyDataBase.getInstance(this)
                     .notesDao().addMemory(memory);
             showMessage(R.string.note_added_successfully,
